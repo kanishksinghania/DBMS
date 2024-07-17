@@ -1,0 +1,548 @@
+
+##CREATE TABLE COMMAND
+mysql> create table employee(
+    -> SSN int NOT NULL,
+    -> F_name varchar(255) NOT NULL,
+    -> L_name varchar(255) NOT NULL,
+    -> Address varchar(255) NOT NULL,
+    -> Dept_no int NOT NULL,
+    -> primary key(SSN)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+##DESCRIBE COMMAND
+mysql> desc employee;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| SSN     | int          | NO   | PRI | NULL    |       |
+| F_name  | varchar(255) | NO   |     | NULL    |       |
+| L_name  | varchar(255) | NO   |     | NULL    |       |
+| Address | varchar(255) | NO   |     | NULL    |       |
+| Dept_no | int          | NO   |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select * from employee;
+Empty set (0.00 sec)
+
+##ALTER TABLE COMMAND
+mysql> alter table employee
+    -> ADD DOB date NOT NULL,
+    -> ADD Salary bigint NOT NULL,
+    -> ADD Gender char NOT NULL;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| SSN     | int          | NO   | PRI | NULL    |       |
+| F_name  | varchar(255) | NO   |     | NULL    |       |
+| L_name  | varchar(255) | NO   |     | NULL    |       |
+| Address | varchar(255) | NO   |     | NULL    |       |
+| Dept_no | int          | NO   |     | NULL    |       |
+| DOB     | date         | NO   |     | NULL    |       |
+| Salary  | bigint       | NO   |     | NULL    |       |
+| Gender  | char(1)      | NO   |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+#INSERT QUERY
+mysql> insert into employee values
+    ->     (1,'Lionel','Messi','spain',7,'2003-09-29',26589034,'M'),
+    ->     (2,'Krishna','Ronaldo','Portugal',5,'2003-09-29',26589034,'M'),
+    ->     (3,'Suniel','Chetri','India',7,'2003-09-29',26589034,'M');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++-----+---------+---------+----------+---------+------------+----------+--------+
+| SSN | F_name  | L_name  | Address  | Dept_no | DOB        | Salary   | Gender |
++-----+---------+---------+----------+---------+------------+----------+--------+
+|   1 | Lionel  | Messi   | spain    |       7 | 2003-09-29 | 26589034 | M      |
+|   2 | Krishna | Ronaldo | Portugal |       5 | 2003-09-29 | 26589034 | M      |
+|   3 | Suniel  | Chetri  | India    |       7 | 2003-09-29 | 26589034 | M      |
++-----+---------+---------+----------+---------+------------+----------+--------+
+3 rows in set (0.00 sec)
+
+
+mysql> select SSN,L_name,F_name,Address from employee where Dept_no=7;
++-----+--------+--------+---------+
+| SSN | L_name | F_name | Address |
++-----+--------+--------+---------+
+|   1 | Messi  | Lionel | spain   |
+|   3 | Chetri | Suniel | India   |
++-----+--------+--------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select DOB,Address from employee where F_name='Lionel' and L_name='Messi';
++------------+---------+
+| DOB        | Address |
++------------+---------+
+| 2003-09-29 | spain   |
++------------+---------+
+1 row in set (0.01 sec)
+
+mysql> select F_name,L_name,salary from employee;
++---------+---------+----------+
+| F_name  | L_name  | salary   |
++---------+---------+----------+
+| Lionel  | Messi   | 26589034 |
+| Krishna | Ronaldo | 26589034 |
+| Suniel  | Chetri  | 26589034 |
++---------+---------+----------+
+3 rows in set (0.00 sec)
+
+Mysql Commands:
+
+mysql>show databases;
+
+mysql>use bank;
+Database changed
+
+mysql>create database K_Company;
+Query OK, 1 row affected (0.01 sec)
+
+mysql>use K_Company
+Database changed
+
+mysql>create table student(RollNo integer(3),Name char(20) not null,address varchar(20));
+Query OK, 0 rows affected, 1 warning (0.09 sec)
+
+mysql> describe student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| RollNo  | int         | YES  |     | NULL    |       |
+| Name    | char(20)    | NO   |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+mysql> show tables;
++---------------------+
+| Tables_in_k_company |
++---------------------+
+| student             |
++---------------------+
+
+mysql>  insert into student values(1,'Kanishk','Delhi');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  select * from student;
++--------+---------+---------+
+| RollNo | Name    | address |
++--------+---------+---------+
+|      1 | Kanishk | Delhi   |
++--------+---------+---------+
+
+mysql>  insert into student values(1,'Kanishk','Delhi');
+Query OK, 1 row affected (0.09 sec)
+
+mysql>  select * from student;
++--------+---------+---------+
+| RollNo | Name    | address |
++--------+---------+---------+
+|      1 | Kanishk | Delhi   |
+|      1 | Kanishk | Delhi   |
++--------+---------+---------+
+
+mysql> alter table student add primary key(RollNo);
+ERROR 1062 (23000): Duplicate entry '1' for key 'student.PRIMARY'
+
+mysql>  delete from student where RollNo=1;
+Query OK, 2 rows affected (0.07 sec)
+
+mysql>  select * from student;
+Empty set (0.00 sec)
+
+mysql> alter table student add primary key(RollNo);
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  insert into student values(1,'Kanishk','Delhi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  select * from student;
++--------+---------+---------+
+| RollNo | Name    | address |
++--------+---------+---------+
+|      1 | Kanishk | Delhi   |
++--------+---------+---------+
+1 row in set (0.00 sec)
+
+
+mysql> use k_company
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_k_company |
++---------------------+
+| department          |
+| parts               |
+| projects            |
+| student             |
+| suppliers           |
++---------------------+
+5 rows in set (0.01 sec)
+
+mysql> desc suppliers;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| S_id   | int         | NO   | PRI | NULL    |       |
+| S_Name | varchar(10) | YES  |     | NULL    |       |
+| Status | varchar(30) | YES  |     | NULL    |       |
+| City   | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc parts;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| P_id   | int         | NO   | PRI | NULL    |       |
+| P_Name | varchar(10) | YES  |     | NULL    |       |
+| Colour | varchar(10) | YES  |     | NULL    |       |
+| Weight | int         | YES  |     | NULL    |       |
+| City   | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc projects;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| J_id   | int         | NO   | PRI | NULL    |       |
+| J_Name | varchar(10) | YES  |     | NULL    |       |
+| City   | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc shipment;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| S_id  | int  | YES  | MUL | NULL    |       |
+| P_id  | int  | YES  | MUL | NULL    |       |
+| J_id  | int  | YES  | MUL | NULL    |       |
+| qty   | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into suppliers values(1,'Kanishk','Permanent','Delhi'),
+    -> (2,'Singhania','Temporary','Mumbai'),
+    -> (3,'Simone','Permanent','Delhi'),
+    -> (4,'Upkar','Permanent','Jammu'),
+    -> (5,'Kuldeep','Temporary','Pune');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from suppliers;
++------+-----------+-----------+--------+
+| S_id | S_Name    | Status    | City   |
++------+-----------+-----------+--------+
+|    1 | Kanishk   | Permanent | Delhi  |
+|    2 | Singhania | Temporary | Mumbai |
+|    3 | Simone    | Permanent | Delhi  |
+|    4 | Upkar     | Permanent | Jammu  |
+|    5 | Kuldeep   | Temporary | Pune   |
++------+-----------+-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into parts values(1,'Motor','Black',20,'Delhi'),
+    -> (2,'Silencer','Silver',5,'Mumbai'),
+    -> (3,'Engine','Gray',50,'Punjab'),
+    -> (4,'Seat','Brown',2,'Chandigarh'),
+    -> (5,'Tube','Gold',3,'Jammu');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from parts;
++------+----------+--------+--------+------------+
+| P_id | P_Name   | Colour | Weight | City       |
++------+----------+--------+--------+------------+
+|    1 | Motor    | Black  |     20 | Delhi      |
+|    2 | Silencer | Silver |      5 | Mumbai     |
+|    3 | Engine   | Gray   |     50 | Punjab     |
+|    4 | Seat     | Brown  |      2 | Chandigarh |
+|    5 | Tube     | Gold   |      3 | Jammu      |
++------+----------+--------+--------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into projects values(1,'Bullet','Delhi'),
+    -> (2,'Car','Pune'),
+    -> (3,'Truck','Punjab'),
+    -> (4,'Bus','Mumbai'),
+    -> (5,'Scooter','Jammu');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from projects
+    -> ;
++------+---------+--------+
+| J_id | J_Name  | City   |
++------+---------+--------+
+|    1 | Bullet  | Delhi  |
+|    2 | Car     | Pune   |
+|    3 | Truck   | Punjab |
+|    4 | Bus     | Mumbai |
+|    5 | Scooter | Jammu  |
++------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into shipment values(1,1,2,5),
+    -> (2,3,1,1000),
+    -> (3,4,5,500),
+    -> (4,2,3,2000),
+    -> (5,5,4,10);
+Query OK, 5 rows affected (0.09 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from shipment;
++------+------+------+------+
+| S_id | P_id | J_id | qty  |
++------+------+------+------+
+|    1 |    1 |    2 |    5 |
+|    2 |    3 |    1 | 1000 |
+|    3 |    4 |    5 |  500 |
+|    4 |    2 |    3 | 2000 |
+|    5 |    5 |    4 |   10 |
++------+------+------+------+
+5 rows in set (0.00 sec)
+
+SUBQUERIES 
+
+mysql> select S_id from shipment where J_id=1;
++------+
+| S_id |
++------+
+|    2 |
++------+
+1 row in set (0.09 sec)
+
+mysql> select P_id from shipment
+    -> where S_id in (select S_id from suppliers where City='Mumbai');
++------+
+| P_id |
++------+
+|    3 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select qty from shipment
+    -> where P_id=1 and S_id in (select S_id from suppliers where S_id=1);
++------+
+| qty  |
++------+
+|    5 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select J_name from projects
+    -> where J_id in (select J_id from shipment where S_id=1);
++--------+
+| J_name |
++--------+
+| Car    |
++--------+
+1 row in set (0.00 sec)
+
+
+
+mysql> select Colour from parts
+    -> where P_id in (select P_id from shipment where S_id=1);
++--------+
+| Colour |
++--------+
+| Black  |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select P_Name,Colour,P_Name,City from parts;
++----------+--------+----------+------------+
+| P_Name   | Colour | P_Name   | City       |
++----------+--------+----------+------------+
+| Motor    | Black  | Motor    | Delhi      |
+| Silencer | Silver | Silencer | Mumbai     |
+| Engine   | Gray   | Engine   | Punjab     |
+| Seat     | Brown  | Seat     | Chandigarh |
+| Tube     | Gold   | Tube     | Jammu      |
++----------+--------+----------+------------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> select Colour from parts
+    -> where P_id in (select P_id from shipment where S_id=1);
++--------+
+| Colour |
++--------+
+| Black  |
++--------+
+1 row in set (0.00 sec)
+
+mysql> delete from shipment
+    -> where P_id in (select P_id from parts where colour='gold');
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from parts where colour='gold';
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from parts;
++------+----------+--------+--------+------------+
+| P_id | P_Name   | Colour | Weight | City       |
++------+----------+--------+--------+------------+
+|    1 | Motor    | Black  |     20 | Delhi      |
+|    2 | Silencer | Silver |      5 | Mumbai     |
+|    3 | Engine   | Gray   |     50 | Punjab     |
+|    4 | Seat     | Brown  |      2 | Chandigarh |
++------+----------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> create view heavy_product as
+    -> select P_Name,Weight
+    -> from parts
+    -> where Weight>5;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from heavy_product;
++--------+--------+
+| P_Name | Weight |
++--------+--------+
+| Motor  |     20 |
+| Engine |     50 |
++--------+--------+
+2 rows in set (0.00 sec)
+
+JOINS
+
+mysql>  select * from suppliers as s join projects as p on s.S_id=p.J_id
+    -> where p.J_id=1;
++------+---------+-----------+-------+------+--------+-------+
+| S_id | S_Name  | Status    | City  | J_id | J_Name | City  |
++------+---------+-----------+-------+------+--------+-------+
+|    1 | Kanishk | Permanent | Delhi |    1 | Bullet | Delhi |
++------+---------+-----------+-------+------+--------+-------+
+1 row in set (0.00 sec)
+
+
+mysql> select p.P_id
+    -> from parts as p
+    -> join suppliers as s
+    -> on p.P_id=s.S_id
+    -> where s.city='Delhi';
++------+
+| P_id |
++------+
+|    1 |
+|    3 |
++------+
+2 rows in set (0.00 sec)
+
+mysql> select sh.qty
+    -> from shipment as sh
+    -> join suppliers as s
+    -> join parts as p
+    -> on p.P_id = s.S_id
+    -> where p.P_id =1 AND s.S_id = 1;
++------+
+| qty  |
++------+
+|    5 |
+| 1000 |
+|  500 |
+| 2000 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select p.J_name
+    -> from shipment as sh
+    -> INNER JOIN projects as p ON sh.J_id = p.J_id
+    -> INNER JOIN suppliers s ON sh.S_id = s.S_id
+    -> WHERE sh.S_id = 1
+    -> ;
++--------+
+| J_name |
++--------+
+| Car    |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select p.P_colour
+    -> from shipment sh
+    -> INNER JOIN parts as p ON sh.P_id = p.P_id
+    -> INNER JOIN suppliers as s ON sh.S_id = s.S_id
+    -> WHERE s.S_id = 1
+    -> ;
++----------+
+| P_colour |
++----------+
+| Black    |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select p.P_colour, s.S_city
+    -> from shipment sh
+    -> INNER JOIN parts as p ON sh.P_id = p.P_id
+    -> INNER JOIN suppliers as s ON sh.S_id = s.S_id
+    -> ;
++----------+--------+
+| P_colour | S_city |
++----------+--------+
+| Black    | Delhi  |
+| Silver   | Jammu  |
+| Gray     | Mumbai |
+| Brown    | Delhi  |
+| Gold     | Pune   |
++----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> delete sh
+    -> from shipment sh
+    -> INNER JOIN parts as p ON sh.P_id = p.P_id
+    -> WHERE p.P_colour = 'gold';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> Delete p
+    -> from  parts as p
+    -> where  p.P_colour = 'gold';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from parts;
++------+----------+----------+----------+------------+
+| P_id | P_name   | P_colour | P_weight | P_city     |
++------+----------+----------+----------+------------+
+|    1 | Motor    | Black    | 20       | Delhi      |
+|    2 | Silencer | Silver   | 5        | Mumbai     |
+|    3 | Engine   | Gray     | 50       | Punjab     |
+|    4 | Seat     | Brown    | 2        | Chandigarh |
++------+----------+----------+----------+------------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

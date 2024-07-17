@@ -1,0 +1,73 @@
+NAME: SAKSHEE GITE
+ROLL NO: 12
+PANEL: D
+BATCH: D1
+
+BATCH 1: EXERCISE 2(CURSORS)
+mysql> CREATE TABLE EMPLOYEE (
+	 ENo INT,
+       FName VARCHAR(50),
+       Age INT,
+       Grade VARCHAR(50),
+       Salary INT(10)); 
+mysql> insert into employee values(1,"ted",40,"Asst. prof",10000);
+mysql> insert into employee values(2,"Jenna",30,"Associate Prof",25000);
+mysql> insert into employee values(3,"Emma",25,"Professor",25000);
+mysql> insert into employee values(4,"James",45,"Professor",40000);
+mysql> insert into employee values(5,"Tom",45,"Asst. prof",40000);
+
+mysql> select * from employee;
++------+-------+------+----------------+--------+
+| ENo  | FName | Age  | Grade          | Salary |
++------+-------+------+----------------+--------+
+|    1 | ted   |   40 | Asst. prof     |  10000 |
+|    2 | Jenna |   30 | Associate Prof |  25000 |
+|    3 | Emma  |   25 | Professor      |  25000 |
+|    4 | James |   45 | Professor      |  40000 |
+|    5 | Tom   |   45 | Asst. prof     |  40000 |
++------+-------+------+----------------+--------+
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE IncrementSalaryByGrade()
+ 	 BEGIN
+ 	 DECLARE eno_val INT;
+   	 DECLARE fname_val VARCHAR(50);
+   	 DECLARE age_val INT;
+   	 DECLARE grade_val VARCHAR(50);
+   	 DECLARE salary_val INT;
+   	 DECLARE done INT DEFAULT FALSE;
+
+  	 DECLARE emp_cursor CURSOR FOR
+  	 SELECT ENo, FName, Age, Grade, Salary FROM EMPLOYEE;
+   	 DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+  	 OPEN emp_cursor;
+
+  		read_loop: LOOP
+  	 	FETCH emp_cursor INTO eno_val, fname_val, age_val, grade_val, salary_val;
+
+    		IF done THEN
+       	LEAVE read_loop;
+     		END IF;
+
+   		IF grade_val = 'Asst. prof' THEN
+     			SET salary_val = salary_val + 10000;
+     		ELSEIF grade_val = 'Associate Prof' THEN
+       		SET salary_val = salary_val + 20000;
+   		ELSEIF grade_val = 'Professor' THEN
+        		SET salary_val = salary_val + 30000;
+     		END IF;
+  	 UPDATE EMPLOYEE SET Salary = salary_val WHERE ENo = eno_val;
+  	 END LOOP;
+  	 CLOSE emp_cursor;
+ 	 END $$
+mysql> CALL IncrementSalaryByGrade();
+
+mysql> select * from employee;
++------+-------+------+----------------+--------+
+| ENo  | FName | Age  | Grade          | Salary |
++------+-------+------+----------------+--------+
+|    1 | ted   |   40 | Asst. prof     |  30000 |
+|    2 | Jenna |   30 | Associate Prof |  65000 |
+|    3 | Emma  |   25 | Professor      |  85000 |
+|    4 | James |   45 | Professor      | 100000 |
+|    5 | Tom   |   45 | Asst. prof     |  60000 |
++------+-------+------+----------------+-

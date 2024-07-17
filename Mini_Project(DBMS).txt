@@ -1,0 +1,62 @@
+The problem statement of a pet adoption site is to provide a user-friendly platform for animal shelters and rescue organizations to connect with potential adopters
+and facilitate the adoption process. The site should address the challenges faced by shelters and rescue organizations in finding loving homes for animals in need,
+such as limited resources, lack of exposure, and difficulty in vetting potential adopters. The site should also address the needs of potential adopters, such as 
+finding a pet that fits their lifestyle, accessing reliable information about the pet's health and behavior, and having a smooth and secure adoption process. 
+Ultimately, the goal of the pet adoption site is to increase the number of successful adoptions and improve the lives of animals and their new owners.
+
+
+Some possible features of a pet adoption site could include:
+1.	Search and filtering: A search function that allows users to filter by species, breed, age, size, gender, and location, and find pets that match their criteria.
+2.	Profiles: Detailed profiles for each pet that include photos, descriptions, health and behavioral information, and contact details for the shelter or rescue organization.
+3.	Application process: An online application process for potential adopters to apply for pets, which may include questions about their lifestyle, living situation, and experience with pets.
+4.	Communication: A messaging or chat system that allows adopters to communicate with shelters or rescue organizations, ask questions, and schedule visits.
+5.	Reviews and ratings: A review and rating system that allows adopters to leave feedback on the adoption process and the pet they adopted.
+6.	Donations: A way for users to make donations to support the shelter or rescue organization.
+7.	Resources: Informational resources, such as articles and FAQs, on pet adoption, pet care, and other related topics.
+8.	Alerts: Notifications for users when new pets that match their search criteria become available.
+9.	Social sharing: Integration with social media platforms to allow users to share pets they are interested in adopting.
+10.	Mobile responsiveness: A mobile-friendly design that allows users to access the site on their mobile devices.
+
+Problem Statement:
+
+A pet adoption site requires a database management system (DBMS) to store and manage the data related to adoptable pets, 
+their medical history, and potential adopters. The DBMS must be designed to efficiently manage pet adoption operations, 
+including pet intake, medical history, behavior evaluations, adoption applications, and adoption matchings. It must also 
+ensure the security and privacy of personal information and comply with applicable data protection regulations.
+
+The pet adoption site should allow the following tasks:
+
+Manage information about adoptable pets, including their medical history, breed, age, and behavior evaluations
+Keep track of pets' adoption statuses, including when they are adopted or returned to the shelter
+Store potential adopters' contact information and application history
+Match adopters with pets based on various criteria, such as lifestyle and compatibility
+Track adoption fees, donations, and other financial transactions related to pet adoption
+Generate reports and analytics to support the management of pet adoption operations
+The DBMS should be scalable and easily maintained to accommodate increasing numbers of adoptable pets and potential adopters. 
+The system should also provide a user-friendly interface for shelter staff and volunteers to efficiently manage the pet adoption process.
+
+The main objective of the pet adoption site is to streamline the pet adoption process and increase the chances of successful pet 
+adoptions. The DBMS should be designed to support this objective by providing efficient and accurate data management, while 
+maintaining the highest standards of data privacy and security.
+
+The stakeholders of the database for a pet adoption site may include:
+
+Pet adoption agency/shelter staff: They will be responsible for managing and updating the database with information about adoptable pets,
+their medical history, behavior evaluations, and adoption status. They will also use the database to track the adoption process and match
+adopters with pets.
+
+Potential pet adopters: They will use the database to find and apply for pets that are available for adoption. They may also use the 
+database to provide their contact information and preferences for pet adoption.
+
+Pet adoption agency/shelter managers: They will use the database to oversee and manage pet adoption operations, including tracking 
+financial transactions and generating reports and analytics.
+
+Veterinarians: They will use the database to access medical history and other information related to pets' health and treatment.
+
+Regulatory authorities: They may use the database to monitor compliance with applicable data protection regulations.
+
+Donors: They may use the database to track their donations to the pet adoption agency/shelter and to monitor the impact of their 
+donations.
+
+Overall, the stakeholders of the database are those who are involved in the pet adoption process and require access to the data 
+stored in the database for their specific needs.
